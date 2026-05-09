@@ -1,0 +1,184 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <title>Preskool - Dashboard</title>
+
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&display=swap" />
+    <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/all.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+  </head>
+
+  <body>
+    <div class="main-wrapper">
+      <!-- HEADER -->
+      <div class="header">
+        <div class="header-left">
+          <a href="{% url 'dashboard' %}" class="logo"><img src="{% static 'assets/img/logo.png' %}" alt="Logo" /></a>
+
+          <a href="{% url 'dashboard' %}" class="logo logo-small"><img src="{% static 'assets/img/logo-small.png' %}" alt="Logo" width="30" height="30" /></a>
+        </div>
+
+        <a href="javascript:void(0);" id="toggle_btn"><i class="fas fa-align-left"></i></a>
+
+        <!-- ✅ FIXED SEARCH FORM -->
+        {% comment %} <div class="top-nav-search">
+          <form method="get">
+            <input type="text" class="form-control" placeholder="Search here..." />
+          </form>
+        </div> {% endcomment %}
+
+        <a class="mobile_btn" id="mobile_btn"><i class="fas fa-bars"></i></a>
+
+        <ul class="nav user-menu">
+          <li class="nav-item dropdown has-arrow">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><span class="user-img"><img class="rounded-circle" src="{% static 'assets/img/profiles/avatar-01.jpg' %}" width="31" alt="User Image" /></span></a>
+
+            <div class="dropdown-menu">
+              <div class="user-header">
+                <div class="avatar avatar-sm">
+                  <img src="{% static 'assets/img/profiles/avatar-01.jpg' %}" alt="User Image" class="avatar-img rounded-circle" />
+                </div>
+
+                <div class="user-text">
+                  <h6>{{ user.first_name }} {{ user.last_name }}</h6>
+                  <p class="text-muted mb-0">{{ user.username }}</p>
+                </div>
+              </div>
+
+              <a class="dropdown-item" href="{% url 'home_auth:logout' %}">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+          <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+              <li class="menu-title">
+                <span>Main Menu</span>
+              </li>
+
+              <li class="submenu ">
+                <a href="{% url 'dashboard' %}" ><i class="fas fa-user-graduate"></i> <span>Dashboard</span></a>
+                <ul>
+                  <li>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="submenu">
+                <a href="#"><i class="fas fa-user-graduate"></i> Students</a>
+                <ul>
+                  <li>
+                    <a href="{% url 'student_list' %}">Student List</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'add_student' %}">Student Add</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="submenu">
+                <a href="#"><i class="fas fa-chalkboard-teacher"></i> Teachers</a>
+                <ul>
+                  <li>
+                    <a href="{% url 'teacher_list' %}">Teacher List</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'add_teacher' %}">Teacher Add</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="submenu">
+                <a href="#"><i class="fas fa-building"></i> Departments</a>
+                <ul>
+                  <li>
+                    <a href="{% url 'department_list' %}">Department List</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'add_department' %}">Department Add</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="submenu">
+                <a href="#"><i class="fas fa-book-reader"></i> Subjects</a>
+                <ul>
+                  <li>
+                    <a href="{% url 'subject_list' %}">Subject List</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'add_subject' %}">Subject Add</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="menu-title">
+                <span>Management</span>
+              </li>
+
+              <li class="submenu">
+                <a href="#"><i class="fas fa-file-invoice-dollar"></i> Accounts</a>
+                <ul>
+                  <li>
+                    <a href="{% url 'fees_collection_list' %}">Fees Collection</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'expenses_list' %}">Expenses</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'salary_list' %}">Salary</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="{% url 'fees_list' %}">Fees</a>
+              </li>
+              <li>
+                <a href="{% url 'exam_list' %}">Exam List</a>
+              </li>
+              <li>
+                <a href="{% url 'timetable_list' %}">Time Table</a>
+              </li>
+
+              <li class="menu-title">
+                <span>Pages</span>
+              </li>
+
+              {% comment %} <li class="submenu">
+                <a href="#">Authentication</a>
+                <ul>
+                  <li>
+                    <a href="{% url 'home_auth:login' %}">Login</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'home_auth:signup' %}">Register</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'home_auth:forgot-password' %}">Forgot Password</a>
+                  </li>
+                </ul>
+              </li> {% endcomment %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE CONTENT -->
+      {% block body %}
+      {% endblock %}
+    </div>
+  </body>
+</html>

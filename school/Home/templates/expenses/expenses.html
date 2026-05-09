@@ -1,0 +1,90 @@
+{% extends "Home/base.html" %}
+
+{% load static %}
+
+{% block body %}
+
+<div class="page-wrapper">
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Expenses</h3>
+<ul class="breadcrumb">
+<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+<li class="breadcrumb-item active">Expenses</li>
+</ul>
+</div>
+<div class="col-auto text-right float-right ml-auto">
+{% comment %} <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a> {% endcomment %}
+<a href="{% url "add_expenses" %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">
+<div class="card card-table">
+<div class="card-body">
+<div class="table-responsive">
+<table class="table table-hover table-center mb-0 datatable">
+<thead>
+  
+<tr>
+<th>ID</th>
+<th>Item Name</th>
+<th>Item Quality</th>
+<th>Amount</th>
+<th>Purchase Source</th>
+<th>Purchase Date</th>
+</tr>
+</thead>
+<tbody>
+      {% for expenses in expenses_list %}
+<tr>
+<td>{{expenses.expenses_id}}</td>
+<td>
+<h2>
+<a>{{expenses.item_name}}</a>
+</h2>
+</td>
+<td>{{expenses.item_quality}}</td>
+<td>{{expenses.expense_amount}}</td>
+<td>{{expenses.source_of_purchase}}</td>
+<td>{{expenses.created_at}}</td>
+</tr>
+{% endfor %} 
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<footer>
+<p>Copyright © 2020 Dreamguys.</p>
+</footer>
+
+</div>
+
+</div>
+
+
+<script src="{%static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{%static 'assets/js/popper.min.js' %}"></script>
+<script src="{%static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<script src="{%static 'assets/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+<script src="{%static 'assets/plugins/datatables/datatables.min.js' %}"></script>
+
+<script src="{%static 'assets/js/script.js' %}"></script>
+</body>
+
+<!-- Mirrored from preschool.dreamguystech.com/html-template/expenses.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:50 GMT -->
+</html>
+{% endblock  %}

@@ -1,0 +1,115 @@
+{% extends "Home/base.html" %}
+
+{% load static %}
+
+{% block body %}
+
+<div class="page-wrapper">
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Edit Fees</h3>
+<ul class="breadcrumb">
+<li class="breadcrumb-item"><a href="/fees">Fees</a></li>
+<li class="breadcrumb-item active">Edit Fees</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+<div class="card-body">
+<form method="POST" enctype = "multipart/form-data">
+{% csrf_token %}
+<div class="row">
+<div class="col-12">
+<h5 class="form-title"><span>Fees Information</span></h5>
+</div>
+<div class="col-12 col-sm-6">
+<div class="form-group">
+<label>Fees ID</label>
+<input type="text" name="fees_id" class="form-control" value="{{fees.fees_id}}">
+</div>
+</div>
+<div class="col-12 col-sm-6">
+<div class="form-group">
+<label>Fees Type</label>
+<select class="form-control">
+<option value="Monthly Fees" {% if fees.fees_type == 'Monthly Fees' %}selected{% endif %}>Monthly Fees</option>
+<option value="Admission Fees" {% if fees.fees_type == 'Admission Fees' %}selected{% endif %}>Admission Fees</option>
+<option value="Class Test" {% if fees.fees_type == 'Class Test' %}selected{% endif %}>Class Test</option>
+<option value="Exam Fees" {% if fees.fees_type == 'Exam Fees' %}selected{% endif %}>Exam Fees</option>
+<option value="Hostel Fees" {% if fees.fees_type == 'Hostel Fees' %}selected{% endif %}>Hostel Fees</option>
+<option value="Others" {% if fees.fees_type == 'Others' %}selected{% endif %}>Others</option>
+</select>
+</div>
+</div>
+<div class="col-12 col-sm-6">
+<div class="form-group">
+<label>Class</label>
+<select class="form-control" name="student_class">
+    <option value="1" {% if fees.student_class == "1" %}selected{% endif %}>1</option>
+    <option value="2" {% if fees.student_class == "2" %}selected{% endif %}>2</option>
+    <option value="3" {% if fees.student_class == "3" %}selected{% endif %}>3</option>
+    <option value="4" {% if fees.student_class == "4" %}selected{% endif %}>4</option>
+    <option value="5" {% if fees.student_class == "5" %}selected{% endif %}>5</option>
+    <option value="6" {% if fees.student_class == "6" %}selected{% endif %}>6</option>
+    <option value="7" {% if fees.student_class == "7" %}selected{% endif %}>7</option>
+    <option value="8" {% if fees.student_class == "8" %}selected{% endif %}>8</option>
+    <option value="9" {% if fees.student_class == "9" %}selected{% endif %}>9</option>
+    <option value="10" {% if fees.student_class == "10" %}selected{% endif %}>10</option>
+    <option value="11" {% if fees.student_class == "11" %}selected{% endif %}>11</option>
+    <option value="12" {% if fees.student_class == "12" %}selected{% endif %}>12</option>
+</select>
+</div>
+</div>
+<div class="col-12 col-sm-6">
+<div class="form-group">
+<label>Fees Amount</label>
+<input type="number" name="fees_amount" class="form-control" value="{{fees.fees_amount}}">
+</div>
+</div>
+<div class="col-12 col-sm-6">
+<div class="form-group">
+<label>Start Date</label>
+<input type="date" name="start_date" class="form-control" value="{{fees.start_date}}">
+</div>
+</div>
+<div class="col-12 col-sm-6">
+<div class="form-group">
+<label>End Date</label>
+<input type="date" name="end_date" class="form-control" value="{{fees.end_date}}">
+</div>
+</div>
+<div class="col-12">
+<button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</div>
+ </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+
+<script src="{%static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{%static 'assets/js/popper.min.js' %}"></script>
+<script src="{%static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<script src="{%static 'assets/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+<script src="{%static 'assets/js/script.js' %}"></script>
+</body>
+
+<!-- Mirrored from preschool.dreamguystech.com/html-template/edit-fees.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:12:21 GMT -->
+</html>
+{% endblock  %}

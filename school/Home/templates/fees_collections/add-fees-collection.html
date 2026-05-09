@@ -1,0 +1,154 @@
+{% extends "Home/base.html" %}
+
+{% load static %}
+
+{% block body %}
+<div class="page-wrapper">
+<div class="content container-fluid">
+
+<div class="page-header">
+<div class="row align-items-center">
+<div class="col">
+<h3 class="page-title">Add Fees</h3>
+<ul class="breadcrumb">
+<li class="breadcrumb-item"><a href="{% url "fees_collection_list" %}">Accounts</a></li>
+<li class="breadcrumb-item active">Add Fees</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">
+<div class="card">
+<div class="card-body">
+<form method="POST" enctype = "multipart/form-data">
+    {% csrf_token %}
+<div class="row">
+<div class="col-12">
+<h5 class="form-title"><span>Fees Information</span></h5>
+</div>
+<!-- Student Select -->
+<div class="col-12 col-sm-6">
+<div class="form-group">
+<label>Select Student</label>
+<select name="student" id="studentSelect" class="form-control" required>
+<option value="">-- Select Student --</option>
+{% for student in students %}
+<option 
+    value="{{ student.id }}"
+    data-id="{{ student.student_id }}"
+    data-name="{{ student.first_name }} {{ student.last_name }}"
+    data-class="{{ student.student_class }}"
+    data-section="{{ student.section }}"
+>
+{{ student.student_id }} - {{ student.first_name }} {{ student.last_name }}
+</option>
+{% endfor %}
+</select>
+</div>
+</div>
+
+<!-- Student ID -->
+<div class="col-12 col-sm-6">
+<div class="form-group">
+<label>Student ID</label>
+<input type="text" id="student_id" class="form-control" readonly>
+</div>
+</div>
+
+<!-- Student Name -->
+<div class="col-12 col-sm-6">
+<div class="form-group">
+<label>Student Name</label>
+<input type="text" id="student_name" class="form-control" readonly>
+</div>
+</div>
+
+<!-- Class -->
+<div class="col-12 col-sm-3">
+<div class="form-group">
+<label>Class</label>
+<input type="text" id="student_class" class="form-control" readonly>
+</div>
+</div>
+
+<!-- Section -->
+<div class="col-12 col-sm-3">
+<div class="form-group">
+<label>Section</label>
+<input type="text" id="student_section" class="form-control" readonly>
+</div>
+</div>
+
+<!-- Fees Type -->
+<div class="col-12 col-sm-6">
+<div class="form-group">
+<label>Fees Type</label>
+<select name="fees_type" class="form-control" required>
+<option value="">Select Type</option>
+<option value="">Select Type</option>
+<option value="Monthly Fees">Monthly Fees</option>
+<option value="Admission Fees">Admission Fees</option>
+<option value="Class Test">Class Test</option>
+<option value="Exam Fees">Exam Fees</option>
+<option value="Hostel Fees">Hostel Fees</option>
+<option value="Others">Others</option>
+</select>
+</div>
+</div>
+<!-- Fees Amount -->
+<div class="col-12 col-sm-6">
+<div class="form-group">
+<label>Fees Amount</label>
+<input type="number" name="fees_amount" class="form-control" required>
+</div>
+</div>
+
+<!-- Paid Date -->
+<div class="col-12 col-sm-6">
+<div class="form-group">
+<label>Paid Date</label>
+<input type="date" name="paid_date" class="form-control" required>
+</div>
+</div>
+
+<div class="col-12">
+<button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+document.getElementById('studentSelect').addEventListener('change', function () {
+    const selected = this.options[this.selectedIndex];
+
+    document.getElementById('student_id').value = selected.getAttribute('data-id') || '';
+    document.getElementById('student_name').value = selected.getAttribute('data-name') || '';
+    document.getElementById('student_class').value = selected.getAttribute('data-class') || '';
+    document.getElementById('student_section').value = selected.getAttribute('data-section') || '';
+});
+</script>
+
+<script src="{%static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+
+<script src="{%static 'assets/js/popper.min.js' %}"></script>
+<script src="{%static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+
+<script src="{%static 'assets/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+<script src="{%static 'assets/js/script.js' %}"></script>
+</body>
+
+<!-- Mirrored from preschool.dreamguystech.com/html-template/add-fees-collection.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Oct 2021 11:11:50 GMT -->
+</html>
+
+{% endblock  %}
